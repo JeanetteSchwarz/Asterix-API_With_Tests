@@ -13,6 +13,8 @@ import java.util.UUID;
 public class CharacterService {
 
     private final CharacterRepository characterRepository;
+    private IdService idService = new IdService();
+
 
     public List<Character> getCharacters() {
         return characterRepository.findAll();
@@ -28,7 +30,9 @@ public class CharacterService {
         return  characterRepository.save(updatedCharacter);
     }
 
-    public void deleteCharacter(@PathVariable String id) {
+    public String deleteCharacter(@PathVariable String id) {
+
         characterRepository.deleteById(id);
+        return "Character deleted";
     }
 }
